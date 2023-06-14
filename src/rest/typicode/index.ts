@@ -1,0 +1,3 @@
+export {
+  TypicodeAPI
+} from './datasource'
