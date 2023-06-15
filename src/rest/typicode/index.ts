@@ -1,3 +1,1 @@
-export {
-  TypicodeAPI
-} from './datasource'
+export { TypicodeAPI } from "./datasource";

@@ -1,9 +1,9 @@
-import { ContextValue } from "./context-value";
+import { Resolvers } from "./generated/graphql";
 
-export const resolvers = {
+export const resolvers: Resolvers = {
   Query: {
-    comments: async (_: any, __: any, { dataSources }: ContextValue) => {
-      return dataSources.commentsAPI.getComments();
+    comments: async (_, __, context) => {
+      return context?.dataSources.commentsAPI.getComments();
     },
-  }
-}
+  },
+};
