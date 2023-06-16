@@ -1,6 +1,6 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { TypicodeAPI } from "./rest/typicode";
+import { CommentsAPI, PostsAPI, TypicodeAPI, UsersAPI } from "./rest/typicode";
 import { resolvers } from "./resolvers";
 
 import { readFileSync } from "fs";
@@ -9,7 +9,10 @@ const typeDefs = readFileSync("./src/schema.graphql", { encoding: "utf-8" });
 
 export interface ContextValue {
   dataSources: {
-    commentsAPI: TypicodeAPI;
+    typicodeAPI: TypicodeAPI;
+    commentsAPI: CommentsAPI;
+    postsAPI: PostsAPI;
+    usersAPI: UsersAPI;
   };
 }
 
@@ -24,7 +27,10 @@ const { url } = await startStandaloneServer(server, {
 
     return {
       dataSources: {
-        commentsAPI: new TypicodeAPI({ cache }),
+        typicodeAPI: new TypicodeAPI({ cache }),
+        commentsAPI: new CommentsAPI({ cache }),
+        postsAPI: new PostsAPI({ cache }),
+        usersAPI: new UsersAPI({ cache }),
       },
     };
   },
